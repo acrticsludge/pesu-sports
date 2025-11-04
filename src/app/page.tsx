@@ -22,7 +22,7 @@ export default function page() {
           {/* Badminton */}
           <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
             <img
-              src=""
+              src="null"
               alt="Badminton Court"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
@@ -38,7 +38,7 @@ export default function page() {
           {/* Basketball */}
           <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
             <img
-              src=""
+              src="null"
               alt="Basketball Court"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
@@ -56,7 +56,7 @@ export default function page() {
           {/* Table Tennis */}
           <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
             <img
-              src=""
+              src="null"
               alt="Table Tennis"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
@@ -72,8 +72,22 @@ export default function page() {
         </div>
 
         {/* Footer */}
-        <footer className="mt-20 mb-10 text-sm text-gray-300">
-          © {new Date().getFullYear()} PESU Sports — All rights reserved.
+        <footer className="mt-20 mb-6 w-full px-8">
+          <div className="flex flex-col sm:flex-row justify-between items-center text-sm text-gray-300">
+            {/* Left side - creators */}
+            <div className="flex space-x-4 mb-2 sm:mb-0">
+              <span>Made by Anubhav Rai</span>
+              <span>•</span>
+              <span>Aryan Adoni</span>
+              <span>•</span>
+              <span>Nirandev CM</span>
+            </div>
+
+            {/* Right side - copyright */}
+            <div>
+              © {new Date().getFullYear()} PESU Sports — All rights reserved.
+            </div>
+          </div>
         </footer>
       </div>
     </div>
