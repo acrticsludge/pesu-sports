@@ -3,7 +3,7 @@ import NavBar from "./NavBar";
 
 export default function page() {
   return (
-    <div className="font-sans">
+    <div>
       <div>
         <NavBar />
       </div>
