@@ -1,5 +1,6 @@
 import React from "react";
 import NavBar from "./NavBar";
+import Footer from "./footer";
 
 export default function page() {
   return (
@@ -70,26 +71,8 @@ export default function page() {
             </div>
           </div>
         </div>
-
-        {/* Footer */}
-        <footer className="mt-20 mb-6 w-full px-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center text-sm text-gray-300">
-            {/* Left side - creators */}
-            <div className="flex space-x-4 mb-2 sm:mb-0">
-              <span>Made by Anubhav Rai</span>
-              <span>•</span>
-              <span>Aryan Adoni</span>
-              <span>•</span>
-              <span>Nirandev CM</span>
-            </div>
-
-            {/* Right side - copyright */}
-            <div>
-              © {new Date().getFullYear()} PESU Sports — All rights reserved.
-            </div>
-          </div>
-        </footer>
       </div>
+      <Footer />
     </div>
   );
 }
