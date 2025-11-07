@@ -1,12 +1,35 @@
-import React, { useState } from "react";
+"use client";
+import React, { createContext, useState, useContext } from "react";
 
-const ActiveSubTab = () => {
-  const [activeDay, setActiveDay] = useState(0);
+type SlotContextType = {
+  selectedSlot: { day: number; hour: number | null };
+  setSelectedSlot: (slot: { day: number; hour: number | null }) => void;
+};
+
+const SlotContext = createContext<SlotContextType | undefined>(undefined);
+
+export const SlotProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectedSlot, setSelectedSlot] = useState<{
     day: number;
     hour: number | null;
   }>({ day: 0, hour: null });
 
+  return (
+    <SlotContext.Provider value={{ selectedSlot, setSelectedSlot }}>
+      {children}
+    </SlotContext.Provider>
+  );
+};
+
+export const useSlot = () => {
+  const context = useContext(SlotContext);
+  if (!context) throw new Error("useSlot must be used within SlotProvider");
+  return context;
+};
+
+const ActiveSubTab = () => {
+  const { selectedSlot, setSelectedSlot } = useSlot();
+  const [activeDay, setActiveDay] = useState(0);
   const today = new Date();
 
   const dayLabels = [
