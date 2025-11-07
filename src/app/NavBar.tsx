@@ -35,8 +35,7 @@ const NavBar = () => {
 
       <div id="login">
         <a
-          href="login.html"
-          target="_blank"
+          href="Login"
           rel="noopener noreferrer"
           id="login-a"
           className="border-2 border-[#0352a1] text-[#0352a1] text-[1.125rem] rounded-[20px] py-2 px-4 w-[81.33px] h-[46.2px] 
