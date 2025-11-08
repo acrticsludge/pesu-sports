@@ -15,12 +15,26 @@ export default function RegisterPage() {
   const [confirm, setConfirm] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const validateEmail = (e: string) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.trim());
 
-  const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
+  const [formData, setFormData] = useState({
+    username: "",
+    srn: "",
+    email: "",
+    password: "",
+    confirm: "",
+  });
+
+  const handleChange = (e: any) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     if (password !== confirm) {
       setError("Passwords do not match.");
       return;
@@ -28,10 +42,11 @@ export default function RegisterPage() {
 
     try {
       setLoading(true);
-      const res = await fetch("/api/auth/register", {
+      const res = await fetch("http://localhost:5000/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, srn, email, password }),
+        credentials: "include",
+        body: JSON.stringify(formData),
       });
 
       if (!res.ok) {
@@ -41,8 +56,13 @@ export default function RegisterPage() {
         return;
       }
 
-      router.push("/");
+      setShowSuccessPopup(true);
+      setTimeout(() => {
+        setShowSuccessPopup(false);
+        router.push("Login");
+      }, 3000);
     } catch (err) {
+      console.error(err);
       setError("An unexpected error occurred.");
       setLoading(false);
     }
@@ -53,7 +73,6 @@ export default function RegisterPage() {
       <Navbar />
       <div className="flex min-h-[calc(100vh-64px)] items-center justify-center px-4 py-12">
         <form
-          onSubmit={handleSubmit}
           className="w-full max-w-md bg-white/80 dark:bg-neutral-900/80 rounded-lg shadow-md p-6 space-y-4"
           aria-label="Register"
         >
@@ -66,9 +85,9 @@ export default function RegisterPage() {
               {error}
             </div>
           )}
-          {success && (
-            <div className="rounded-md bg-green-50 p-3 text-sm text-green-700">
-              {success}
+          {showSuccessPopup && (
+            <div className="fixed top-5 left-1/2 -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50">
+              Thanks for registering.. Redirecting to login page.
             </div>
           )}
 
@@ -82,8 +101,9 @@ export default function RegisterPage() {
               </label>
               <input
                 id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 placeholder="Enter your name"
                 required
@@ -99,8 +119,9 @@ export default function RegisterPage() {
               </label>
               <input
                 id="srn"
-                value={srn}
-                onChange={(e) => setSrn(e.target.value)}
+                name="srn"
+                value={formData.srn}
+                onChange={handleChange}
                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 placeholder="Enter your SRN"
                 required
@@ -117,8 +138,9 @@ export default function RegisterPage() {
               <input
                 id="email"
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 placeholder="you@example.com"
                 required
@@ -135,8 +157,9 @@ export default function RegisterPage() {
               <input
                 id="password"
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 placeholder="Enter password"
                 required
@@ -153,8 +176,9 @@ export default function RegisterPage() {
               <input
                 id="confirm"
                 type="password"
-                value={confirm}
-                onChange={(e) => setConfirm(e.target.value)}
+                name="confirm"
+                value={formData.confirm}
+                onChange={handleChange}
                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 placeholder="Confirm password"
                 required
@@ -164,6 +188,7 @@ export default function RegisterPage() {
 
           <button
             type="submit"
+            onClick={handleSubmit}
             disabled={loading}
             className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
           >

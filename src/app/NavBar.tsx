@@ -1,6 +1,9 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
+import { useUser } from "./UserContext";
 
 const NavBar = () => {
+  const { user } = useUser();
   return (
     <div
       id="navbar"
@@ -17,7 +20,7 @@ const NavBar = () => {
           href="Badminton"
           className="text-black no-underline cursor-pointer hover:scale-105 transition-transform duration-300"
         >
-          Badmintion
+          Badminton
         </a>
         <a
           href="#"
@@ -33,17 +36,26 @@ const NavBar = () => {
         </a>
       </nav>
 
-      <div id="login">
-        <a
-          href="Login"
-          rel="noopener noreferrer"
-          id="login-a"
-          className="border-2 border-[#0352a1] text-[#0352a1] text-[1.125rem] rounded-[20px] py-2 px-4 w-[81.33px] h-[46.2px] 
-            transition-colors duration-700 ease-in-out cursor-pointer hover:bg-[#0352a1] hover:text-white"
+      {user ? (
+        <div
+          className="border-2 border-[#0352a1] text-[#0352a1] text-[1.125rem] rounded-[20px] py-2 px-4 
+      h-[46.2px] transition-colors duration-700 ease-in-out cursor-pointer hover:bg-[#0352a1] hover:text-white"
         >
-          Login
-        </a>
-      </div>
+          Welcome, {user.username}
+        </div>
+      ) : (
+        <div id="login">
+          <a
+            href="Login"
+            rel="noopener noreferrer"
+            id="login-a"
+            className="border-2 border-[#0352a1] text-[#0352a1] text-[1.125rem] rounded-[20px] py-2 px-4 
+        h-[46.2px] transition-colors duration-700 ease-in-out cursor-pointer hover:bg-[#0352a1] hover:text-white"
+          >
+            Login
+          </a>
+        </div>
+      )}
     </div>
   );
 };

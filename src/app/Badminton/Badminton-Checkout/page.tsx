@@ -1,8 +1,10 @@
 "use client";
 import React from "react";
 import { useSearchParams } from "next/navigation";
+import { useUser } from "../../UserContext";
 
 const page = () => {
+  const { user } = useUser();
   const params = useSearchParams();
   const day = params.get("day");
   const hour = params.get("hour");
@@ -20,6 +22,7 @@ const page = () => {
         Time Slot: {hour}:00-{hourInt}:00
       </div>
       <div>Sport: {sport}</div>
+      <div>Username: {user?.username}</div>
     </div>
   );
 };

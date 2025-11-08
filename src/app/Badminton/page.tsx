@@ -66,8 +66,11 @@ export default function Badminton() {
                   onClick={() => setActiveTab("Court 1")}
                   aria-pressed={activeTab === "Court 1"}
                   className={`cursor-pointer hover:scale-105 transition-transform duration-300 px-4 py-2 ${
-                    activeTab === "tab1" ? "bg-gray-200 rounded-md" : ""
+                    activeTab === "Court 1"
+                      ? "bg-gray-200 rounded-md cursor-default"
+                      : ""
                   }`}
+                  disabled={activeTab === "Court 1"}
                 >
                   Court 1
                 </button>
@@ -75,8 +78,11 @@ export default function Badminton() {
                   onClick={() => setActiveTab("Court 2")}
                   aria-pressed={activeTab === "Court 2"}
                   className={`cursor-pointer hover:scale-105 transition-transform duration-300 px-4 py-2 ${
-                    activeTab === "tab2" ? "bg-gray-200 rounded-md" : ""
+                    activeTab === "Court 2"
+                      ? "bg-gray-200 rounded-md cursor-default"
+                      : ""
                   }`}
+                  disabled={activeTab === "Court 2"}
                 >
                   Court 2
                 </button>
@@ -84,8 +90,11 @@ export default function Badminton() {
                   onClick={() => setActiveTab("Court 3")}
                   aria-pressed={activeTab === "Court 3"}
                   className={`cursor-pointer hover:scale-105 transition-transform duration-300 px-4 py-2 ${
-                    activeTab === "tab3" ? "bg-gray-200 rounded-md" : ""
+                    activeTab === "Court 3"
+                      ? "bg-gray-200 rounded-md cursor-default"
+                      : ""
                   }`}
+                  disabled={activeTab === "Court 3"}
                 >
                   Court 3
                 </button>
