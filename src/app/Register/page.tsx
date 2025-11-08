@@ -29,7 +29,7 @@ export default function RegisterPage() {
     confirm: "",
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -42,11 +42,19 @@ export default function RegisterPage() {
 
     try {
       setLoading(true);
+      const trimmedData = {
+        username: formData.username.trim(),
+        srn: formData.srn.trim(),
+        email: formData.email.trim(),
+        password: formData.password,
+        confirm: formData.confirm,
+      };
+
       const res = await fetch("http://localhost:5000/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify(formData),
+        body: JSON.stringify(trimmedData),
       });
 
       if (!res.ok) {

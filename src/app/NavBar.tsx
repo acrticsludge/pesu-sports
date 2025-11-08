@@ -41,7 +41,7 @@ const NavBar = () => {
           className="border-2 border-[#0352a1] text-[#0352a1] text-[1.125rem] rounded-[20px] py-2 px-4 
       h-[46.2px] transition-colors duration-700 ease-in-out cursor-pointer hover:bg-[#0352a1] hover:text-white"
         >
-          Welcome, {user.username}
+          <a href="Dashboard">Welcome, {user.username}</a>
         </div>
       ) : (
         <div id="login">

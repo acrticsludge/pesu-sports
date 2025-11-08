@@ -62,7 +62,7 @@ async function startServer() {
   app.post("/register", async (req, res) => {
     try {
       const { username, srn, email, password, confirm } = req.body;
-
+      console.log("body", req.body);
       if (!username || !srn || !email || !password || !confirm) {
         return res
           .status(400)
@@ -73,10 +73,12 @@ async function startServer() {
       }
 
       if (await collection.findOne({ srn })) {
+        console.log("Duplicate SRN:", srn);
         return res.status(400).json({ error: "SRN already registered" });
       }
 
       if (await collection.findOne({ email })) {
+        console.log("Duplicate Email:", email);
         return res.status(400).json({ error: "Email already registered" });
       }
 
@@ -97,6 +99,9 @@ async function startServer() {
 
       // Set session user with inserted user data
       req.session.user = {
+        _id: insertedUser._id,
+        createdAt: insertedUser.createdAt,
+        accountType: insertedUser.user,
         srn: insertedUser.srn,
         email: insertedUser.email,
         username: insertedUser.username,
@@ -139,6 +144,9 @@ async function startServer() {
       }
 
       req.session.user = {
+        _id: user._id,
+        createdAt: user.createdAt,
+        accountType: user.user,
         srn: user.srn,
         email: user.email,
         username: user.username,
