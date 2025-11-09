@@ -22,13 +22,15 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
 
     if (user === null) {
       console.log("User is null, redirecting to /login");
-      router.push("/Login");
+      const timeoutId = setTimeout(() => {
+        router.push("/Login");
+      }, 1500);
     } else {
       console.log("User authenticated:", user);
     }
   }, [user, router]);
 
-  if (user === undefined) {
+  if (!user) {
     return <div>Loading authentication status...</div>;
   }
 
