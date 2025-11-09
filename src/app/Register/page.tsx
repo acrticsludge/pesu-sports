@@ -4,17 +4,13 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Navbar from "../NavBar";
 import Footer from "../footer";
-import { JSX } from "react/jsx-runtime";
+
 import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
-  const [username, setUsername] = useState("");
-  const [srn, setSrn] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();

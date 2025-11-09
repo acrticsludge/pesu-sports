@@ -9,7 +9,6 @@ export default function page() {
         <NavBar />
       </div>
       <div className="flex flex-col items-center bg-[#0352a1] min-h-screen pt-20 text-white">
-        {/* Header */}
         <header className="text-4xl sm:text-5xl font-poppins font-bold pt-10">
           Welcome to PESU Sports
         </header>
@@ -18,9 +17,7 @@ export default function page() {
           at PES University.
         </p>
 
-        {/* Courts Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 px-8 w-full max-w-6xl">
-          {/* Badminton */}
           <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
             <img
               src="null"
@@ -36,7 +33,6 @@ export default function page() {
             </div>
           </div>
 
-          {/* Basketball */}
           <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
             <img
               src="null"
@@ -54,7 +50,6 @@ export default function page() {
             </div>
           </div>
 
-          {/* Table Tennis */}
           <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
             <img
               src="null"

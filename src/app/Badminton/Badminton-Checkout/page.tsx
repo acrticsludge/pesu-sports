@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useUser } from "../../UserContext";
 import Footer from "../../footer";
@@ -27,8 +27,45 @@ const page = () => {
     router.push(`/Badminton?day=${day}&hour=${hour}&tab=${tab}`);
   };
 
-  const handleConfirmBooking = () => {
-    // Add your confirm booking logic here
+  const handleConfirmBooking = async () => {
+    const booking = {
+      username: user?.username || "Guest",
+      srn: (user as any)?.srn || "",
+      timeSlot: timeSlot,
+      court: courtNumber || "",
+      bookingDate: formattedDate,
+      bookingMadeDate: new Date().toLocaleDateString(),
+    };
+
+    try {
+      const response = await fetch("http://localhost:5000/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sport: sport,
+          section: "scheduled",
+          bookingData: booking,
+        }),
+      });
+      console.log(
+        JSON.stringify({
+          sport: sport,
+          section: "scheduled",
+          bookingData: booking,
+        })
+      );
+      const data = response.json();
+      if (response.ok) {
+        alert("Booking confirmed!");
+        router.push(`/${sport}?day=${day}&hour=${hour}&tab=${tab}`);
+      } else {
+        console.log(response);
+        alert((data as any).error || "Failed to book");
+      }
+    } catch (error) {
+      console.error("Booking error:", error);
+      alert("An error occurred.");
+    }
   };
 
   return (

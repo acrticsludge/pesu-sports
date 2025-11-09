@@ -15,14 +15,16 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   console.log("ProtectedRoute render; user:", user);
 
   useEffect(() => {
-    if (isFirstRender.current) {
+    if (isFirstRender.current || user === undefined) {
       isFirstRender.current = false;
       return;
     }
-    console.log("ProtectedRoute checking user:", user);
+
     if (user === null) {
-      console.log("Redirecting to /login");
-      router.push("Login");
+      console.log("User is null, redirecting to /login");
+      router.push("/Login");
+    } else {
+      console.log("User authenticated:", user);
     }
   }, [user, router]);
 

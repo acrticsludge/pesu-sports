@@ -13,7 +13,7 @@ interface UserContextType {
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = React.useState<any | null | undefined>(undefined);
 
   useEffect(() => {
     async function fetchUser() {

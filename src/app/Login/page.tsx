@@ -25,7 +25,7 @@ export default function Page() {
 
   const validateEmail = (value: string) => {
     const v = value.trim();
-    // simple email check
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(v);
   };
