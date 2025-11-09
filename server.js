@@ -11,18 +11,12 @@ app.get("/", (req, res) => {
 });
 
 // Route for "/mypost" - example POST handler
-app.post("/mypost", (req, res) => {
+app.post("/login", (req, res) => {
   const data = req.body;
-  // Process the posted data as needed
+
   res.json({ message: "Data received successfully", receivedData: data });
 });
 
-// Route for "/api" - example GET handler returning JSON data
-app.get("/api", (req, res) => {
-  res.json({ status: "API is working", timestamp: new Date().toISOString() });
-});
-
-// Start the server
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
