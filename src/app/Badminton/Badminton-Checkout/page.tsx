@@ -24,7 +24,7 @@ const page = () => {
   const timeSlot = `${hour}:00 - ${hourInt}:00`;
 
   const handleGoBack = () => {
-    router.push(`/Badminton?day=${day}&hour=${hour}&tab=${tab}`);
+    router.push(`/Dashboard`);
   };
 
   const handleConfirmBooking = async () => {

@@ -23,13 +23,13 @@ const NavBar = () => {
           Badminton
         </a>
         <a
-          href="#"
+          href="Basketball"
           className="text-black no-underline cursor-pointer hover:scale-105 transition-transform duration-300"
         >
           Basketball
         </a>
         <a
-          href="#"
+          href="Table-Tennis"
           className="text-black no-underline cursor-pointer hover:scale-105 transition-transform duration-300"
         >
           Table Tennis

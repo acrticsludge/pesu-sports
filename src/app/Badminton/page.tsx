@@ -1,9 +1,9 @@
 "use client";
 import NavBar from "../NavBar";
 import React, { useState, useEffect } from "react";
-import ActiveSubTab from "./ActiveSubTab";
+import ActiveSubTab from "../ActiveSubTab";
 import Footer from "../footer";
-import { useSlot, SlotProvider } from "./ActiveSubTab";
+import { useSlot, SlotProvider } from "../ActiveSubTab";
 import { useRouter, useSearchParams } from "next/navigation";
 import ProtectedRoute from "../ProtectedRoute";
 

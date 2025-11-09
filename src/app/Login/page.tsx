@@ -19,7 +19,7 @@ export default function Page() {
 
   const validateSRN = (value: string) => {
     const trimmed = value.trim();
-    const srnRegex = /^PES\d+UG(?:25|26|27)[A-Z]{2,4}\d{3}$/i;
+    const srnRegex = /^PES\d+UG(?:25|26|27)[A-Z]{2,10}\d{3}$/i;
     return srnRegex.test(trimmed);
   };
 

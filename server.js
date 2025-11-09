@@ -173,7 +173,7 @@ async function startServer() {
         createdAt: new Date(),
       });
 
-      const insertedUser = await collection.findOne({ email });
+      const insertedUser = await db.collection("users").findOne({ email });
 
       req.session.user = {
         _id: insertedUser._id,
