@@ -11,7 +11,7 @@ const Footer = () => {
             <span>•</span>
             <span>Aryan Adoni</span>
             <span>•</span>
-            <span>Nirandev CM</span>
+            <span>Nirandev C M</span>
           </div>
 
           {/* Right side - copyright */}
