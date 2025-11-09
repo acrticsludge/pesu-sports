@@ -3,6 +3,7 @@ import React from "react";
 import NavBar from "./NavBar";
 import Footer from "./footer";
 import Router, { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function page() {
   const route = useRouter();
@@ -32,7 +33,7 @@ export default function page() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 px-8 w-full max-w-6xl">
           <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
-            <img
+            <Image
               src="null"
               alt="Badminton Court"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
@@ -50,7 +51,7 @@ export default function page() {
           </div>
 
           <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
-            <img
+            <Image
               src="null"
               alt="Basketball Court"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
@@ -70,7 +71,7 @@ export default function page() {
           </div>
 
           <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
-            <img
+            <Image
               src="null"
               alt="Table Tennis"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
