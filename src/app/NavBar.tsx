@@ -1,6 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useUser } from "./UserContext";
+import { Link } from "lucide-react";
 
 const NavBar = () => {
   const { user } = useUser();
@@ -10,9 +11,9 @@ const NavBar = () => {
       className="flex fixed top-0 left-0 w-full justify-between items-center bg-white h-20 px-2 box-border"
     >
       <div id="pesu-logo">
-        <a href="/">
+        <Link href="/">
           <img src="/pesu_sports.png" alt="PES Logo" className="w-[100px]" />
-        </a>
+        </Link>
       </div>
 
       <nav id="links" className="flex gap-6 p-6 text-[1.125rem] m-0 font-sans">

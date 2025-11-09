@@ -62,12 +62,6 @@ export default function UserDashboard() {
   }, [user]);
 
   const todayStr = new Date().toISOString().slice(0, 10);
-  const currentBookings = bookings.filter(
-    (b) => (b as any).bookingDate >= todayStr
-  );
-  const pastBookings = bookings.filter(
-    (b) => (b as any).bookingDate < todayStr
-  );
 
   const handleLogout = async () => {
     try {

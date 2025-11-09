@@ -56,7 +56,7 @@ const ActiveSubTab = ({
     {
       label: "Tomorrow",
       date: (() => {
-        let d = new Date();
+        const d = new Date();
         d.setDate(d.getDate() + 1);
         return d;
       })(),
@@ -64,7 +64,7 @@ const ActiveSubTab = ({
     {
       label: "Day After",
       date: (() => {
-        let d = new Date();
+        const d = new Date();
         d.setDate(d.getDate() + 2);
         return d;
       })(),

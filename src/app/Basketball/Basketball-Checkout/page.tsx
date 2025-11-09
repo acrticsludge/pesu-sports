@@ -1,12 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { useSearchParams } from "next/navigation";
 import { useUser } from "../../UserContext";
 import Footer from "../../footer";
 import { useRouter } from "next/navigation";
 import ProtectedRoute from "../../ProtectedRoute";
 
-const page = () => {
+function page() {
   const router = useRouter();
   const { user } = useUser();
   const params = useSearchParams();
@@ -144,6 +144,6 @@ const page = () => {
       </div>
     </ProtectedRoute>
   );
-};
+}
 
 export default page;

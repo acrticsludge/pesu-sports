@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactNode, useEffect, useRef } from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "./UserContext";
 
@@ -11,6 +11,7 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const { user } = useUser();
   const router = useRouter();
   const isFirstRender = useRef(true);
+  const [shouldShow, setShouldShow] = useState(false);
 
   console.log("ProtectedRoute render; user:", user);
 
@@ -25,12 +26,14 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
       const timeoutId = setTimeout(() => {
         router.push("/Login");
       }, 1500);
+      return () => clearTimeout(timeoutId);
     } else {
+      setShouldShow(true);
       console.log("User authenticated:", user);
     }
   }, [user, router]);
 
-  if (!user) {
+  if (!shouldShow) {
     return <div>Loading authentication status...</div>;
   }
 

@@ -8,14 +8,12 @@ import Footer from "../footer";
 import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
-  const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
+  const [password] = useState("");
+  const [confirm] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const validateEmail = (e: string) =>
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.trim());
 
   const [formData, setFormData] = useState({
     username: "",

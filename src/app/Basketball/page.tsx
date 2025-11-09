@@ -74,7 +74,7 @@ export default function Basketball() {
     bookings: Array<any>;
     router: any;
   }) {
-    const { selectedSlot, setSelectedSlot } = useSlot();
+    const { selectedSlot } = useSlot();
 
     const dayLabels = [
       new Date(),
