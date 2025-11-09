@@ -1,8 +1,21 @@
+"use client";
 import React from "react";
 import NavBar from "./NavBar";
 import Footer from "./footer";
+import Router, { useRouter } from "next/navigation";
 
 export default function page() {
+  const route = useRouter();
+  const handleBadmintonClick = async () => {
+    route.push("Badminton");
+  };
+  const handleBasketballClick = async () => {
+    route.push("Basketball");
+  };
+  const handleTableTennisClick = async () => {
+    route.push("Table-Tennis");
+  };
+
   return (
     <div>
       <div>
@@ -24,7 +37,10 @@ export default function page() {
               alt="Badminton Court"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center">
+            <div
+              className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center cursor-pointer"
+              onClick={handleBadmintonClick}
+            >
               <h2 className="text-2xl font-semibold font-poppins">Badminton</h2>
               <p className="text-sm mt-2 text-center max-w-[80%]">
                 Enjoy indoor badminton courts with professional flooring and
@@ -39,7 +55,10 @@ export default function page() {
               alt="Basketball Court"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center">
+            <div
+              className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center cursor-pointer"
+              onClick={handleBasketballClick}
+            >
               <h2 className="text-2xl font-semibold font-poppins">
                 Basketball
               </h2>
@@ -56,7 +75,10 @@ export default function page() {
               alt="Table Tennis"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center">
+            <div
+              className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center cursor-pointer"
+              onClick={handleTableTennisClick}
+            >
               <h2 className="text-2xl font-semibold font-poppins">
                 Table Tennis
               </h2>
