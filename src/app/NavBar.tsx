@@ -1,19 +1,26 @@
 "use client";
 import React from "react";
 import { useUser } from "./UserContext";
-import { Link } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-const NavBar = () => {
+function NavBar() {
+  const router = useRouter();
   const { user } = useUser();
+  const handleLogoClick = () => {
+    router.push("/");
+  };
   return (
     <div
       id="navbar"
       className="flex fixed top-0 left-0 w-full justify-between items-center bg-white h-20 px-2 box-border"
     >
       <div id="pesu-logo">
-        <Link href="/">
-          <img src="/pesu_sports.png" alt="PES Logo" className="w-[100px]" />
-        </Link>
+        <img
+          src="/pesu_sports.png"
+          alt="PES Logo"
+          className="w-[100px] cursor-pointer"
+          onClick={handleLogoClick}
+        />
       </div>
 
       <nav id="links" className="flex gap-6 p-6 text-[1.125rem] m-0 font-sans">
@@ -59,6 +66,6 @@ const NavBar = () => {
       )}
     </div>
   );
-};
+}
 
 export default NavBar;
