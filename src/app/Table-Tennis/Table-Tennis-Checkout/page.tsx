@@ -60,7 +60,10 @@ function page() {
         router.push(`/Dashboard`);
       } else {
         console.log(response);
-        alert((data as any).error || "Failed to book");
+        alert(
+          (data as any).error ||
+            "Cannot make more than one booking per sport, contact owner if this is a mistake."
+        );
       }
     } catch (error) {
       console.error("Booking error:", error);
