@@ -1,8 +1,12 @@
 import React from "react";
+import Image from "next/image";
 import NavBar from "./NavBar";
 import Footer from "./footer";
+import basketballCourtImage from './assets/basketball_court.jpg';
+import badmintonCourtImage from './assets/badminton_court.jpg';
+import tableTennisCourtImage from './assets/table-tennis.jpg';
 
-export default function page() {
+export default function Page() {
   return (
     <div>
       <div>
@@ -22,8 +26,8 @@ export default function page() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 px-8 w-full max-w-6xl">
           {/* Badminton */}
           <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
-            <img
-              src="null"
+            <Image
+              src={badmintonCourtImage}
               alt="Badminton Court"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
@@ -38,8 +42,8 @@ export default function page() {
 
           {/* Basketball */}
           <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
-            <img
-              src="null"
+            <Image
+              src={basketballCourtImage}
               alt="Basketball Court"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
@@ -56,8 +60,8 @@ export default function page() {
 
           {/* Table Tennis */}
           <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
-            <img
-              src="null"
+            <Image
+              src={tableTennisCourtImage}
               alt="Table Tennis"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
