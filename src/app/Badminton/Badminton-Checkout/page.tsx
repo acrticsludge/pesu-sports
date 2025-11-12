@@ -1,31 +1,31 @@
 "use client";
-export const dynamic = "force-dynamic";
+
 import React from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useUser } from "../../UserContext";
 import Footer from "../../footer";
-import { useRouter } from "next/navigation";
 import ProtectedRoute from "../../ProtectedRoute";
 
-function page() {
+function BadmintonCheckoutPage() {
   const router = useRouter();
   const { user } = useUser();
   const params = useSearchParams();
+
   const day = params.get("day");
   const hour = params.get("hour");
   const tab = params.get("tab");
   const sport = params.get("sport");
-  const hourInt = parseInt(hour ?? "0") + 1;
+  const hourInt = parseInt(hour ?? "0", 10) + 1;
 
-  const slotdate = new Date();
-  slotdate.setDate(slotdate.getDate() + (day ? parseInt(day) : 0));
-  const formattedDate = slotdate.toLocaleDateString();
-  const dayOfWeek = slotdate.toLocaleDateString("en-US", { weekday: "long" });
+  const slotDate = new Date();
+  slotDate.setDate(slotDate.getDate() + (day ? parseInt(day, 10) : 0));
+  const formattedDate = slotDate.toLocaleDateString();
+  const dayOfWeek = slotDate.toLocaleDateString("en-US", { weekday: "long" });
   const courtNumber = tab;
   const timeSlot = `${hour}:00 - ${hourInt}:00`;
 
   const handleGoBack = () => {
-    router.push(`/Dashboard`);
+    router.push("/Badminton");
   };
 
   const handleConfirmBooking = async () => {
@@ -43,26 +43,19 @@ function page() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          sport: sport,
+          sport,
           section: "scheduled",
           bookingData: booking,
         }),
       });
-      console.log(
-        JSON.stringify({
-          sport: sport,
-          section: "scheduled",
-          bookingData: booking,
-        })
-      );
-      const data = response.json();
+
+      const data = await response.json();
       if (response.ok) {
         alert("Booking confirmed!");
         router.push(`/${sport}?day=${day}&hour=${hour}&tab=${tab}`);
       } else {
-        console.log(response);
         alert(
-          (data as any).error ||
+          data.error ||
             "Cannot make more than one booking per sport, contact owner if this is a mistake."
         );
       }
@@ -95,9 +88,7 @@ function page() {
                 <span className="block text-gray-600 font-semibold mb-1">
                   Date & Day
                 </span>
-                <span className="text-gray-900 text-lg font-bold">
-                  {`${formattedDate} (${dayOfWeek})`}
-                </span>
+                <span className="text-gray-900 text-lg font-bold">{`${formattedDate} (${dayOfWeek})`}</span>
               </div>
 
               <div>
@@ -150,4 +141,4 @@ function page() {
   );
 }
 
-export default page;
+export default BadmintonCheckoutPage;
