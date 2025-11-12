@@ -2,8 +2,7 @@
 import React from "react";
 import NavBar from "./NavBar";
 import Footer from "./footer";
-import Router, { useRouter } from "next/navigation";
-import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function page() {
   const route = useRouter();
@@ -34,12 +33,13 @@ export default function page() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 px-8 w-full max-w-6xl">
           <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
             <img
-              src="null"
+              src="/badminton.png"
               alt="Badminton Court"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
             <div
-              className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center cursor-pointer"
+              className="absolute inset-0 bg-[#1f1f1f]/60 flex flex-col justify-center items-center cursor-pointer 
+transition-all duration-500 ease-in-out"
               onClick={handleBadmintonClick}
             >
               <h2 className="text-2xl font-semibold font-poppins">Badminton</h2>
@@ -50,14 +50,15 @@ export default function page() {
             </div>
           </div>
 
-          <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
+          <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg group ">
             <img
-              src="null"
+              src="/basketball.png"
               alt="Basketball Court"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
             <div
-              className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center cursor-pointer"
+              className="absolute inset-0 bg-[#1f1f1f]/60 flex flex-col justify-center items-center cursor-pointer 
+transition-all duration-500 ease-in-out"
               onClick={handleBasketballClick}
             >
               <h2 className="text-2xl font-semibold font-poppins">
@@ -72,12 +73,13 @@ export default function page() {
 
           <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
             <img
-              src="null"
+              src="/table-tennis.png"
               alt="Table Tennis"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
             <div
-              className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center cursor-pointer"
+              className="absolute inset-0 bg-[#1f1f1f]/60 flex flex-col justify-center items-center cursor-pointer 
+transition-all duration-500 ease-in-out"
               onClick={handleTableTennisClick}
             >
               <h2 className="text-2xl font-semibold font-poppins">

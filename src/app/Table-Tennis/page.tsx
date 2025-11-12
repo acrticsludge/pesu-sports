@@ -117,7 +117,7 @@ export default function TableTennis() {
               Select your desired court and timing and book now!
             </p>
 
-            <div className="flex flex-row justify-center w-full pt-10">
+            <div className="flex flex-row justify-center w-full pt-10 items-center">
               <div className="bg-white rounded-2xl p-8 shadow-lg max-w-lg w-1/2 m-6">
                 <div className="flex justify-between tabs text-2xl font-bold text-[#0352a1]">
                   {["Court 1", "Court 2", "Court 3"].map((court) => (
@@ -146,7 +146,13 @@ export default function TableTennis() {
                 </div>
               </div>
 
-              <div className="w-1/2 text-center">img</div>
+              <div className="flex w-1/2 justify-center">
+                <img
+                  src="./table-tennis.png"
+                  alt="Table Tennis"
+                  className="rounded-[10px] h-[261px] w-[465px]"
+                />
+              </div>
             </div>
 
             <div className="">

@@ -46,7 +46,7 @@ function NavBar() {
 
       {user ? (
         <div
-          className="border-2 border-[#0352a1] text-[#0352a1] text-[1.125rem] rounded-[20px] py-2 px-4 
+          className="border-2 border-[#0352a1] text-[#0352a1] text-[1.125rem] rounded-full py-2 px-4 
       h-[46.2px] transition-colors duration-700 ease-in-out cursor-pointer hover:bg-[#0352a1] hover:text-white"
         >
           <a href="Dashboard">Welcome, {user.username}</a>
@@ -57,7 +57,7 @@ function NavBar() {
             href="Login"
             rel="noopener noreferrer"
             id="login-a"
-            className="border-2 border-[#0352a1] text-[#0352a1] text-[1.125rem] rounded-[20px] py-2 px-4 
+            className="border-2 border-[#0352a1] text-[#0352a1] text-[1.125rem] rounded-full py-2 px-4 
         h-[46.2px] transition-colors duration-700 ease-in-out cursor-pointer hover:bg-[#0352a1] hover:text-white"
           >
             Login

@@ -57,16 +57,17 @@ export default function Page() {
       });
       const data = await res.json();
 
-      setShowSuccessPopup(true);
       if (res.ok && data.user) {
-        setUser(data.user);
+        setShowSuccessPopup(true);
         console.log("Logged in user:", data.user);
         setTimeout(() => {
           setShowSuccessPopup(false);
           router.push("/");
         }, 3000);
+        setUser(data.user);
       } else {
         setError(data.message || "Login failed.");
+        setLoading(false);
       }
     } catch (err) {
       console.log(err);
@@ -83,7 +84,7 @@ export default function Page() {
         <div className="w-full max-w-md bg-white/80 dark:bg-neutral-900/80 rounded-lg shadow-md p-6">
           {showSuccessPopup && (
             <div className="fixed top-5 left-1/2 -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50">
-              Loggin in...
+              Logging in...
             </div>
           )}
           <h1 className="text-2xl font-semibold mb-4">Login</h1>
