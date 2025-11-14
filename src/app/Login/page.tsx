@@ -5,26 +5,27 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Navbar from "../NavBar";
 import Footer from "../footer";
+import { useUser } from "../UserContext";
 
 export default function Page() {
+  const { setUser } = useUser();
   const router = useRouter();
   const [srn, setSrn] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const validateSRN = (value: string) => {
-    // Expect SRN like: PES<n>UG<year like 25,26,27><course code><3 digit code>
-    // example: PES1UG25CSE001
     const trimmed = value.trim();
-    const srnRegex = /^PES\d+UG(?:25|26|27)[A-Z]{2,4}\d{3}$/i;
+    const srnRegex = /^PES\d+UG(?:25|26|27)[A-Z]{2,10}\d{3}$/i;
     return srnRegex.test(trimmed);
   };
 
   const validateEmail = (value: string) => {
     const v = value.trim();
-    // simple email check
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(v);
   };
@@ -48,21 +49,28 @@ export default function Page() {
 
     try {
       setLoading(true);
-      const res = await fetch("/api/auth/login", {
+      const res = await fetch("http://localhost:5000/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify({ srn, email, password }),
       });
+      const data = await res.json();
 
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        setError(data?.message || "Login failed.");
+      if (res.ok && data.user) {
+        setShowSuccessPopup(true);
+        console.log("Logged in user:", data.user);
+        setTimeout(() => {
+          setShowSuccessPopup(false);
+          router.push("/");
+        }, 3000);
+        setUser(data.user);
+      } else {
+        setError(data.message || "Login failed.");
         setLoading(false);
-        return;
       }
-
-      router.push("/");
     } catch (err) {
+      console.log(err);
       setError("An unexpected error occurred.");
       setLoading(false);
     }
@@ -74,7 +82,17 @@ export default function Page() {
 
       <main className="min-h-[70vh] flex items-center justify-center px-4 py-12 mt-[80px]">
         <div className="w-full max-w-md bg-white/80 dark:bg-neutral-900/80 rounded-lg shadow-md p-6">
+          {showSuccessPopup && (
+            <div className="fixed top-5 left-1/2 -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50">
+              Logging in...
+            </div>
+          )}
           <h1 className="text-2xl font-semibold mb-4">Login</h1>
+          {error && (
+            <div className="rounded-md bg-red-50 p-3 text-sm text-red-700">
+              {error}
+            </div>
+          )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
@@ -125,8 +143,6 @@ export default function Page() {
               />
             </div>
 
-            {error && <p className="text-sm text-red-600">{error}</p>}
-
             <button
               type="submit"
               disabled={loading}
@@ -137,7 +153,7 @@ export default function Page() {
           </form>
 
           <p className="text-sm text-center mt-4">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link href="Register" className="text-blue-600 underline">
               Register
             </Link>
