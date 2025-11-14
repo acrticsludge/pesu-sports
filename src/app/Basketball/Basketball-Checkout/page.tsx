@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useUser } from "../../UserContext";
 import Footer from "../../footer";
@@ -16,7 +16,8 @@ function BasketballCheckoutPage() {
   const tab = params.get("tab");
   const sport = params.get("sport");
   const hourInt = parseInt(hour ?? "0", 10) + 1;
-
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState<string | null>(null);
   const slotDate = new Date();
   slotDate.setDate(slotDate.getDate() + (day ? parseInt(day, 10) : 0));
   const formattedDate = slotDate.toLocaleDateString();
@@ -51,13 +52,12 @@ function BasketballCheckoutPage() {
 
       const data = await response.json();
       if (response.ok) {
-        alert("Booking confirmed!");
-        router.push(`/${sport}?day=${day}&hour=${hour}&tab=${tab}`);
+        setTimeout(() => {
+          setMessage("Booking confirmed!");
+          router.push(`/${sport}?day=${day}&hour=${hour}&tab=${tab}`);
+        }, 3000);
       } else {
-        alert(
-          data.error ||
-            "Cannot make more than one booking per sport, contact owner if this is a mistake."
-        );
+        setError(data.error || "An error occurred.");
       }
     } catch (error) {
       console.error("Booking error:", error);
@@ -72,6 +72,17 @@ function BasketballCheckoutPage() {
           <h1 className="text-3xl font-bold text-center text-blue-700 mb-10">
             Confirm Your Booking Details
           </h1>
+          {error && (
+            <div className="rounded-md bg-red-50 p-3 text-sm text-red-700">
+              {error}
+            </div>
+          )}
+          {message && (
+            <div className="rounded-md bg-green-50 p-3 text-sm text-green-700">
+              {message}
+            </div>
+          )}
+          <br></br>
 
           <div className="bg-white rounded-lg shadow divide-y divide-gray-200">
             <div className="flex flex-col space-y-4 p-6">
