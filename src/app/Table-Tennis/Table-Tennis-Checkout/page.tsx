@@ -54,7 +54,7 @@ function TableTennisCheckoutPage() {
       if (response.ok) {
         setTimeout(() => {
           setMessage("Booking confirmed!");
-          router.push(`/${sport}?day=${day}&hour=${hour}&tab=${tab}`);
+          router.push(`/${sport}`);
         }, 3000);
       } else {
         setError(data.error || "An error occurred.");
