@@ -5,6 +5,16 @@ import NavBar from "./NavBar";
 import Footer from "./footer";
 
 export default function page() {
+  const route = useRouter();
+  const handleBadmintonClick = async () => {
+    route.push("Badminton");
+  };
+  const handleBasketballClick = async () => {
+    route.push("Basketball");
+  };
+  const handleTableTennisClick = async () => {
+    route.push("Table-Tennis");
+  };
   return (
     <div>
       <div>
