@@ -3,6 +3,8 @@ import React from "react";
 import Image from "next/image";
 import NavBar from "./NavBar";
 import Footer from "./footer";
+import { useRouter } from "next/navigation";
+
 
 export default function page() {
   const route = useRouter();
