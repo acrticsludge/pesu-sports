@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  experimental: {
+    missingSuspenseWithCSRBailout: "warn",
+  } as unknown as NextConfig["experimental"],
 };
 
 export default nextConfig;
